@@ -9,7 +9,9 @@ enum class Errors(val code: String, val message: String) {
     CA001("CA-001", "Category [%s] not exists"),
     CA002("CA-002", "the category name cannot be blank"),
 
-    PO001("PO-001", "Product [%s] not exists"),
+    PO001("PO-001", "Category [%s] not exists"),
+    PO002("PO-002", "the category name cannot be blank"),
+
 
 
 

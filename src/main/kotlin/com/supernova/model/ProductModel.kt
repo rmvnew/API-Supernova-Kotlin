@@ -27,20 +27,17 @@ data class ProductModel(
     var price: BigDecimal,
 
     @Column
-    @JsonAlias("is_active")
     var isActive: Boolean,
 
     @Column
-    @JsonAlias("create_at")
     var createAt: LocalDateTime?,
 
     @Column
-    @JsonAlias("update_at")
     var updateAt: LocalDateTime?,
 
     @ManyToOne
-    @JoinColumn(name = "category_id",nullable = false)
-    var category:CategoryModel
+    @JoinColumn(name = "category_id")
+    var category:CategoryModel? = null
 
 
 

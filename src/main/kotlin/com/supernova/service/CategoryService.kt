@@ -32,9 +32,10 @@ class CategoryService(
             throw BadRequestException(Errors.CA002.message,Errors.CA002.code)
         }
 
+        category.name = category.name.uppercase(Locale.getDefault())
+
         category.name.validLength()
 
-        category.name = category.name.uppercase(Locale.getDefault())
 
         categoryRepository.save(category)
     }
@@ -45,7 +46,7 @@ class CategoryService(
 
     fun findAllActive(pageable: Pageable): Page<CategoryModel> {
 
-        return categoryRepository.findAllActive(pageable)
+        return categoryRepository.findByIsActiveTrue(pageable)
 
     }
 

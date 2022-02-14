@@ -3,12 +3,15 @@ package com.supernova.extension
 import com.supernova.controller.request.PostCategoryRequest
 import com.supernova.controller.request.PostProductRequest
 import com.supernova.controller.request.PutCategoryRequest
+import com.supernova.controller.request.PutProductRequest
 import com.supernova.controller.response.CategoryResponse
+import com.supernova.controller.response.ProductResponse
 import com.supernova.enums.Errors
 import com.supernova.exception.BadRequestException
 import com.supernova.model.CategoryModel
 import com.supernova.model.ProductModel
 import com.supernova.service.CategoryService
+import com.supernova.service.ProductService
 import com.supernova.util.max_length_name
 import com.supernova.util.min_length_name
 import java.time.LocalDateTime
@@ -72,7 +75,9 @@ fun String.validLength() {
 fun PostProductRequest.toProductModel(
     categoryService: CategoryService
 ): ProductModel {
+
     return ProductModel(
+
         name = this.name,
         barcode = this.barcode,
         quantity = this.quantity,
@@ -84,3 +89,33 @@ fun PostProductRequest.toProductModel(
 
     )
 }
+
+fun ProductModel.toResponse(): ProductResponse {
+    return ProductResponse(
+        id = this.id,
+        name = this.name,
+        barcode = this.barcode,
+        quantity = this.quantity,
+        price = this.price,
+        isActive = this.isActive,
+        createAt = this.createAt,
+        updateAt = this.updateAt,
+        caregory = this.category
+    )
+}
+
+fun PutProductRequest.toProductModel(productModel:ProductModel, categoryService: CategoryService):ProductModel{
+    return ProductModel(
+        id = productModel.id,
+        name = this.name,
+        barcode = this.barcode,
+        quantity = this.quantity,
+        price = this.price,
+        category = categoryService.findById(this.categoryId),
+        isActive = productModel.isActive,
+        createAt = productModel.createAt,
+        updateAt = LocalDateTime.now()
+    )
+}
+
+

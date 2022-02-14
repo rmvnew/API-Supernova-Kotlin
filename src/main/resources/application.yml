@@ -1,0 +1,15 @@
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/supernova?createDatabaseIfNotExist=true
+    username: rmv
+    password: 12345
+  jackson:
+    default-property-inclusion: non_null
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher

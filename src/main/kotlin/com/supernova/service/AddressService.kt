@@ -7,6 +7,7 @@ import com.supernova.exception.NotFoundException
 import com.supernova.extension.toAddressModel
 import com.supernova.model.AddressModel
 import com.supernova.repository.AddressRepository
+import com.supernova.validation.ActiveValidate.Companion.validateActive
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
@@ -30,7 +31,7 @@ class AddressService(
     fun findById(id: Int): AddressModel {
         val address = addressRepository.findById(id).orElseThrow { NotFoundException(Errors.AD001.message, Errors.AD001.code) }
 
-        address.validateActive(address.isActive)
+        validateActive(address.isActive)
 
        return  address
     }

@@ -8,6 +8,7 @@ import com.supernova.enums.Errors
 import com.supernova.exception.BadRequestException
 import com.supernova.model.AddressModel
 import com.supernova.model.CategoryModel
+import com.supernova.model.PhoneModel
 import com.supernova.model.ProductModel
 import com.supernova.service.CategoryService
 import com.supernova.service.ProductService
@@ -168,6 +169,29 @@ fun PutAddressRequest.toAddressModel(addressModel: AddressModel):AddressModel{
         number = this.number,
         isActive = addressModel.isActive,
         createAt = addressModel.createAt,
+        updateAt = LocalDateTime.now()
+    )
+}
+
+/**
+ * Phone
+ */
+
+fun PostPhoneRequest.toPhoneModel():PhoneModel{
+    return PhoneModel(
+        phone = this.phone,
+        isActive = true,
+        createAt = LocalDateTime.now(),
+        updateAt = null
+    )
+}
+
+fun PutPhoneRequest.toPhoneModel(phoneModel: PhoneModel):PhoneModel{
+    return  PhoneModel(
+        id = phoneModel.id,
+        phone = this.phone,
+        isActive = phoneModel.isActive,
+        createAt = phoneModel.createAt,
         updateAt = LocalDateTime.now()
     )
 }

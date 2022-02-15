@@ -1,33 +1,17 @@
 package com.supernova.model
 
-import com.supernova.enums.Errors
-import com.supernova.exception.NotFoundException
 import java.time.LocalDateTime
 import javax.persistence.*
 
-@Entity(name = "address")
-data class AddressModel(
+
+@Entity(name = "phone")
+data class PhoneModel(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
 
-    @Column(name = "zip_code")
-    var zipCode: String,
-
     @Column
-    var state: String,
-
-    @Column
-    var city: String,
-
-    @Column
-    var district: String,
-
-    @Column
-    var street: String,
-
-    @Column
-    var number: String,
+    var phone : String,
 
     @Column(name = "is_active")
     var isActive: Boolean,
@@ -37,8 +21,4 @@ data class AddressModel(
 
     @Column(name = "update_at")
     var updateAt: LocalDateTime? = null
-) {
-
-
-
-}
+)

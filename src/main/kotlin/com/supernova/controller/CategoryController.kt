@@ -5,7 +5,6 @@ import com.supernova.controller.request.PutCategoryRequest
 import com.supernova.controller.response.CategoryResponse
 import com.supernova.extension.toCategoryModel
 import com.supernova.extension.toResponse
-import com.supernova.model.CategoryModel
 import com.supernova.service.CategoryService
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable

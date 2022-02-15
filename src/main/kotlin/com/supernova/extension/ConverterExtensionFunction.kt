@@ -1,19 +1,19 @@
 package com.supernova.extension
 
-import com.supernova.controller.request.PostCategoryRequest
-import com.supernova.controller.request.PostProductRequest
-import com.supernova.controller.request.PutCategoryRequest
-import com.supernova.controller.request.PutProductRequest
+import com.supernova.controller.request.*
+import com.supernova.controller.response.AddressResponse
 import com.supernova.controller.response.CategoryResponse
 import com.supernova.controller.response.ProductResponse
 import com.supernova.enums.Errors
 import com.supernova.exception.BadRequestException
+import com.supernova.model.AddressModel
 import com.supernova.model.CategoryModel
 import com.supernova.model.ProductModel
 import com.supernova.service.CategoryService
 import com.supernova.service.ProductService
 import com.supernova.util.max_length_name
 import com.supernova.util.min_length_name
+import com.supernova.util.regex_special_character
 import java.time.LocalDateTime
 
 /**
@@ -65,6 +65,8 @@ fun String.validLength() {
     }
 
 }
+
+
 
 
 /**
@@ -119,3 +121,53 @@ fun PutProductRequest.toProductModel(productModel:ProductModel, categoryService:
 }
 
 
+/**
+ * Address
+ */
+
+
+fun PostAddressRequest.toAddressModel():AddressModel{
+    return AddressModel(
+
+        zipCode = this.zipCode,
+        state = this.state,
+        city = this.city,
+        district = this.district,
+        street = this.street,
+        number = this.number,
+        isActive = true,
+        createAt = LocalDateTime.now(),
+        updateAt = null
+
+    )
+}
+
+fun AddressModel.toResponse():AddressResponse{
+    return AddressResponse(
+        id = this.id,
+        zipCode = this.zipCode,
+        state = this.state,
+        city = this.city,
+        district = this.district,
+        street = this.street,
+        number = this.number,
+        isActive = this.isActive,
+        createAt = this.createAt,
+        updateAt = this.updateAt
+    )
+}
+
+fun PutAddressRequest.toAddressModel(addressModel: AddressModel):AddressModel{
+    return AddressModel(
+        id = addressModel.id,
+        zipCode = this.zipCode,
+        street = this.street,
+        state = this.state,
+        city = this.city,
+        district = this.district,
+        number = this.number,
+        isActive = addressModel.isActive,
+        createAt = addressModel.createAt,
+        updateAt = LocalDateTime.now()
+    )
+}

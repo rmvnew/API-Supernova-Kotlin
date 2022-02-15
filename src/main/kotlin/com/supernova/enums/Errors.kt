@@ -5,6 +5,8 @@ enum class Errors(val code: String, val message: String) {
     SYS001("SYS-001", "name is already registered in the database"),
     SYS002("SYS-002", "the minimum length for name is 3 characters"),
     SYS003("SYS-003", "the maximum name length is 100 characters"),
+    SYS004("SYS-004", "found item is inactive"),
+    SYS200("SYS-200", "the name cannot contain special characters"),
 
     CA001("CA-001", "Category [%s] not exists"),
     CA002("CA-002", "the category name cannot be blank"),
@@ -12,7 +14,8 @@ enum class Errors(val code: String, val message: String) {
     PO001("PO-001", "Category [%s] not exists"),
     PO002("PO-002", "the category name cannot be blank"),
 
-
+    AD001("AD-001", "Address [%s] not exists"),
+    AD002("CA-002", "the field cannot be blank"),
 
 
     ML001("ML-001", "Invalid request"),

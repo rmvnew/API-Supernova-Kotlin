@@ -14,7 +14,7 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("phone")
 class PhoneController(
-    val phoneService: PhoneService
+    private val phoneService: PhoneService
 ) {
 
     @PostMapping

@@ -16,8 +16,8 @@ import java.util.*
 
 @Service
 class ProductService(
-    val productRepository: ProductRepository,
-    val categoryService: CategoryService
+    private val productRepository: ProductRepository,
+    private val categoryService: CategoryService
 ) {
     fun create(product: ProductModel) {
 

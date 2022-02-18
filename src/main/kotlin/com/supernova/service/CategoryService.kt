@@ -18,7 +18,7 @@ import java.util.*
 
 @Service
 class CategoryService(
-    val categoryRepository: CategoryRepository
+    private val categoryRepository: CategoryRepository
 ) {
 
     fun create(category: CategoryModel) {

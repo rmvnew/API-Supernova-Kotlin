@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class PhoneService(
-    val phoneRepository: PhoneRepository
+    private val phoneRepository: PhoneRepository
 ) {
     fun create(phoneRequest: PostPhoneRequest) {
         phoneRepository.save(phoneRequest.toPhoneModel())

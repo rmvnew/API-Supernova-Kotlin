@@ -16,7 +16,7 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("address")
 class AddressController(
-    val addressService: AddressService
+    private val addressService: AddressService
 ) {
 
     @PostMapping

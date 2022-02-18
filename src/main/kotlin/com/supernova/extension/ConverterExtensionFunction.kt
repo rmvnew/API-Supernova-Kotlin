@@ -6,15 +6,12 @@ import com.supernova.controller.response.CategoryResponse
 import com.supernova.controller.response.ProductResponse
 import com.supernova.enums.Errors
 import com.supernova.exception.BadRequestException
-import com.supernova.model.AddressModel
-import com.supernova.model.CategoryModel
-import com.supernova.model.PhoneModel
-import com.supernova.model.ProductModel
+import com.supernova.model.*
+import com.supernova.repository.AddressRepository
+import com.supernova.repository.PhoneRepository
 import com.supernova.service.CategoryService
-import com.supernova.service.ProductService
 import com.supernova.util.max_length_name
 import com.supernova.util.min_length_name
-import com.supernova.util.regex_special_character
 import java.time.LocalDateTime
 
 /**
@@ -193,5 +190,54 @@ fun PutPhoneRequest.toPhoneModel(phoneModel: PhoneModel):PhoneModel{
         isActive = phoneModel.isActive,
         createAt = phoneModel.createAt,
         updateAt = LocalDateTime.now()
+    )
+}
+
+
+/**
+ * User
+ */
+
+
+fun PostUserRequest.toUserModel(
+    addressRepository: AddressRepository,
+    phoneRepository: PhoneRepository
+):UserModel{
+
+    val phone = PhoneModel(
+        phone = this.phone.phone,
+        isActive = true,
+        createAt = LocalDateTime.now(),
+        updateAt = null
+    )
+
+    phoneRepository.save(phone)
+
+    val address = AddressModel(
+        zipCode = this.address.zipCode,
+        state = this.address.state,
+        city = this.address.city,
+        district = this.address.district,
+        street = this.address.street,
+        number = this.address.number,
+        isActive = true,
+        createAt = LocalDateTime.now(),
+        updateAt = null
+    )
+
+    addressRepository.save(address)
+
+    return UserModel(
+        name = this.name,
+        register = this.register,
+        email = this.email,
+        password = this.password,
+        profile = this.profile,
+        isActive = true,
+        createAt = LocalDateTime.now(),
+        updateAt = null,
+        address = address,
+        phone = phone
+
     )
 }

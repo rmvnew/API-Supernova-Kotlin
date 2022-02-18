@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class AddressService(
-    val addressRepository: AddressRepository
+    private val addressRepository: AddressRepository
 ) {
     fun create(request: PostAddressRequest) {
         addressRepository.save(request.toAddressModel())

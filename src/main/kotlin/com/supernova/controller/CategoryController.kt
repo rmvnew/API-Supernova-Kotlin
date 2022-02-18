@@ -17,7 +17,7 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("category")
 class CategoryController(
-    val categoryService: CategoryService
+    private val categoryService: CategoryService
 ) {
 
 

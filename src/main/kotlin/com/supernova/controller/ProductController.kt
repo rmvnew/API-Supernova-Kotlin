@@ -19,8 +19,8 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("product")
 class ProductController(
-    val productService : ProductService,
-    val categoryService: CategoryService
+    private val productService : ProductService,
+    private val categoryService: CategoryService
 ) {
 
     @PostMapping
